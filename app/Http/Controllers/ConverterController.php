@@ -40,7 +40,7 @@ class ConverterController extends Controller
 
     private function send_for_processing() {
 
-        $endpoint = "https://sandbox.zamzar.com/v1/jobs";
+        $endpoint = "https://api.zamzar.com/v1/jobs";
 
         $postData = [
             "source_file" => curl_file_create( $this->uploaded_file ),
@@ -69,7 +69,7 @@ class ConverterController extends Controller
 
         sleep(1);
 
-        $endpoint = "https://sandbox.zamzar.com/v1/jobs/". $this->job->id;
+        $endpoint = "https://api.zamzar.com/v1/jobs/". $this->job->id;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $endpoint);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -89,7 +89,7 @@ class ConverterController extends Controller
     }
 
     private function store_converted_file() {
-        $endpoint = "https://sandbox.zamzar.com/v1/files/".$this->job->file_id."/content";
+        $endpoint = "https://api.zamzar.com/v1/files/".$this->job->file_id."/content";
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $endpoint);
